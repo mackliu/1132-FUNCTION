@@ -10,6 +10,8 @@
 
 <?php
 include "../function.php";
+$d1=find('member',1);
+dd($d1);
 $rows=all('member');
 
 ?>
