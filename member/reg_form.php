@@ -103,6 +103,11 @@
             <input type="reset" value="重置">
         </div>
     </form>
+
+    <?php
+    include "../function.php";
+starts(17);
+?>
 </body>
 
 </html>
