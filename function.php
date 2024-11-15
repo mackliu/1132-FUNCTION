@@ -43,7 +43,8 @@ switch($shape){
     break;  
 }
 }
-
+$dsn="mysql:host=localhost;charset=utf8;dbname=crud";
+$pdo=new PDO($dsn,'root','');
 /**
  * 建立資料庫的連線變數
  * @param string $db 資料庫名稱
@@ -62,7 +63,9 @@ function pdo($db){
  * @return array
  */
 function all($table){
-    $pdo=pdo('crud');
+    /* $pdo=pdo('crud'); */
+    global $pdo;
+
     $sql="select * from $table";
     $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     return $rows;
@@ -76,7 +79,7 @@ function all($table){
  */
 function find($table,$id){
     
-    $pdo=$pdo=pdo('crud');
+    global $pdo;
 
     if(is_array($id)){
         $tmp=[];
@@ -90,7 +93,7 @@ function find($table,$id){
         $sql="select * from $table where id='$id'";
     }
     $row=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
-    
+
     return $row;
 }
 
