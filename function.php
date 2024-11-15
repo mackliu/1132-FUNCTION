@@ -94,6 +94,38 @@ function find($table,$id){
     return $row;
 }
 
+
+/**
+ * 刪除指定條件的資料
+ * @param string $table 資料表名稱
+ * @param array $id 條件(數字或陣列)
+ * @return boolean
+ */
+
+function del($table ,$id){
+    $pdo=$pdo=pdo('crud');
+
+    if(is_array($id)){
+        $tmp=[];
+        foreach($id as $key => $value){
+            //sprintf("`%s`='%s'",$key,$value);
+            $tmp[]="`$key`='$value'";
+        }
+        $sql="delete from $table where ".join(" && ",$tmp);
+        
+    }else{
+        $sql="delete from $table where id='$id'";
+    }
+
+     return  $pdo->exec($sql);
+    
+    
+
+
+
+}
+
+
 /**
  * 列出陣列內容
  */
